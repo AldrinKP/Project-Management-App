@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Sidebar from './components/Sidebar';
-import ProjectMain from './components/ProjectMain';
+import NoProject from './components/NoProject';
+import CreateProject from './components/CreateProject';
 
 function App() {
 	const [isCreatingProject, setIsCreatingProject] = useState(false);
@@ -16,11 +17,8 @@ function App() {
 	return (
 		<main className="h-screen my-8 flex gap-8">
 			<Sidebar addProject={setIsCreatingProject} />
-			<ProjectMain
-				creatingProject={isCreatingProject}
-				selectProject={selectedProject}
-				addProject={setIsCreatingProject}
-			/>
+			{!selectedProject && <NoProject />}
+			{creatingProject && <CreateProject />}
 		</main>
 	);
 }
