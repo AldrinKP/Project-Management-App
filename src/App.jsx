@@ -12,6 +12,7 @@ function App() {
 		setProjects((prevProjects) => {
 			return [...prevProjects, newProject];
 		});
+		resetProjectSelection();
 	}
 
 	function createNewProject() {
