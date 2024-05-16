@@ -1,11 +1,11 @@
 import CreateProject from './CreateProject';
 import NoProject from './NoProject';
 
-export default function ProjectMain() {
+export default function ProjectMain({ creatingProject, selectedProject }) {
 	return (
 		<>
-			<NoProject />
-			<CreateProject />
+			{!selectedProject && <NoProject />}
+			{creatingProject && <CreateProject />}
 		</>
 	);
 }
