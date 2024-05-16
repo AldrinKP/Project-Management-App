@@ -1,4 +1,5 @@
 import noProjects from '../assets/no-projects.png';
+import Button from './Button';
 
 export default function NoProject({ createNewProject }) {
 	return (
@@ -15,7 +16,7 @@ export default function NoProject({ createNewProject }) {
 				Select a project or get started with a new one
 			</p>
 			<p className="mt-8">
-				<button onClick={createNewProject}>Create new project</button>
+				<Button onClick={createNewProject}>Create new project</Button>
 			</p>
 		</div>
 	);

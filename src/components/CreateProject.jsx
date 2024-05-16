@@ -1,4 +1,5 @@
 import Input from './Input';
+import Button from './Button';
 import { useRef } from 'react';
 
 export default function CreateProject({ saveProject, cancel }) {
@@ -28,12 +29,7 @@ export default function CreateProject({ saveProject, cancel }) {
 					</button>
 				</li>
 				<li>
-					<button
-						onClick={handleSave}
-						className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
-					>
-						Save
-					</button>
+					<Button onClick={handleSave}>Save</Button>
 				</li>
 			</menu>
 			<div>
