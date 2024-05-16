@@ -1,6 +1,10 @@
 import { useRef } from 'react';
 
-export default function ProjectDetails({ projectDetails, updateProject }) {
+export default function ProjectDetails({
+	projectDetails,
+	updateProject,
+	deleteProject,
+}) {
 	const task = useRef();
 
 	function handleAddTask() {
@@ -24,7 +28,7 @@ export default function ProjectDetails({ projectDetails, updateProject }) {
 		<div>
 			<div>
 				<h2>{projectDetails.title}</h2>
-				<button>Delete</button>
+				<button onClick={deleteProject}>Delete</button>
 			</div>
 			{/*TODO: convert to format: Aug 23, 2024 */}
 			<p>{projectDetails.dueDate}</p>

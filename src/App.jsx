@@ -30,6 +30,13 @@ function App() {
 		setSelectedProjectIndex(projectIndex);
 	}
 
+	function deleteProject() {
+		setProjects((prevProjects) => {
+			return prevProjects.toSpliced(selectedProjectIndex, 1);
+		});
+		resetProjectSelection();
+	}
+
 	function updateProject(updatedProject) {
 		setProjects((prevProjects) => {
 			const newProjects = prevProjects.map((project, index) => {
@@ -63,6 +70,7 @@ function App() {
 				<ProjectDetails
 					projectDetails={projects[selectedProjectIndex]}
 					updateProject={updateProject}
+					deleteProject={deleteProject}
 				/>
 			)}
 		</main>
