@@ -1,5 +1,15 @@
-export default function ProjectDetails({ projectDetails }) {
-	console.log(projectDetails);
+import { useRef } from 'react';
+
+export default function ProjectDetails({ projectDetails, updateProject }) {
+	const task = useRef();
+
+	function handleAddTask() {
+		const updatedProject = {
+			...projectDetails,
+			tasks: [...projectDetails.tasks, task.current.value],
+		};
+		updateProject(updatedProject);
+	}
 	return (
 		<div>
 			<div>
@@ -12,14 +22,24 @@ export default function ProjectDetails({ projectDetails }) {
 			<hr />
 			<p>Tasks</p>
 			<div>
-				<input />
-				<button>Add Task</button>
+				<input ref={task} />
+				<button onClick={handleAddTask}>Add Task</button>
 			</div>
 			{projectDetails.tasks.length === 0 ? (
 				<p>This project does not have any tasks yet</p>
 			) : (
 				<ul>
-					<li>task 1</li>
+					{projectDetails.tasks.map((task, index) => {
+						return (
+							<li
+								className="flex justify-between my-4"
+								key={index}
+							>
+								<p>{task}</p>
+								<button>Clear</button>
+							</li>
+						);
+					})}
 				</ul>
 			)}
 		</div>

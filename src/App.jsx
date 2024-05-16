@@ -62,6 +62,7 @@ function App() {
 			{selectedProjectIndex !== null && (
 				<ProjectDetails
 					projectDetails={projects[selectedProjectIndex]}
+					updateProject={updateProject}
 				/>
 			)}
 			{console.log(projects)}
