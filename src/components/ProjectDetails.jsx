@@ -10,6 +10,15 @@ export default function ProjectDetails({ projectDetails, updateProject }) {
 		};
 		updateProject(updatedProject);
 	}
+
+	function handleRemoveTask(taskIndex) {
+		const updatedProject = {
+			...projectDetails,
+			tasks: projectDetails.tasks.toSpliced(taskIndex, 1),
+		};
+		updateProject(updatedProject);
+	}
+
 	return (
 		<div>
 			<div>
@@ -36,7 +45,9 @@ export default function ProjectDetails({ projectDetails, updateProject }) {
 								key={index}
 							>
 								<p>{task}</p>
-								<button>Clear</button>
+								<button onClick={() => handleRemoveTask(index)}>
+									Clear
+								</button>
 							</li>
 						);
 					})}
