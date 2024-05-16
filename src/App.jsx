@@ -17,6 +17,7 @@ function App() {
 	}
 
 	function createNewProject() {
+		setSelectedProjectIndex(null);
 		setIsCreatingProject(true);
 	}
 
