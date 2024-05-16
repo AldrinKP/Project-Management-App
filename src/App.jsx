@@ -65,7 +65,6 @@ function App() {
 					updateProject={updateProject}
 				/>
 			)}
-			{console.log(projects)}
 		</main>
 	);
 }
