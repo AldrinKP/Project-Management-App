@@ -1,16 +1,18 @@
-export default function CreateProject() {
+import Input from './Input';
+
+export default function CreateProject({ saveProject, cancel }) {
 	return (
 		<div className="flex-col">
 			<div className="flex">
-				<button>Cancel</button>
-				<div>Save</div>
+				<button onClick={cancel}>Cancel</button>
+				<button>Save</button>
 			</div>
 			<label>TITLE</label>
-			<input />
+			<Input type={text} />
 			<label>DESCRIPTION</label>
-			<input></input>
+			<Input type="text" />
 			<label>Due Date</label>
-			<input type="date"></input>
+			<Input type="date" />
 		</div>
 	);
 }
