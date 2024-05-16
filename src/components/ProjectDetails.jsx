@@ -15,7 +15,13 @@ export default function ProjectDetails({ projectDetails }) {
 				<input />
 				<button>Add Task</button>
 			</div>
-			<p>This project does not have any tasks yet</p>
+			{projectDetails.tasks.length === 0 ? (
+				<p>This project does not have any tasks yet</p>
+			) : (
+				<ul>
+					<li>task 1</li>
+				</ul>
+			)}
 		</div>
 	);
 }
