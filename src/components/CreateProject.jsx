@@ -8,9 +8,9 @@ export default function CreateProject({ saveProject, cancel }) {
 
 	function handleSave() {
 		const newProject = {
-			Title: title.current.value,
-			Description: description.current.value,
-			'Due Date': dueDate.current.value,
+			title: title.current.value,
+			description: description.current.value,
+			dueDate: dueDate.current.value,
 		};
 		saveProject(newProject);
 	}
