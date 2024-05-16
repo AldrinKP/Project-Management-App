@@ -50,6 +50,27 @@ function App() {
 		});
 	}
 
+	let content;
+
+	if (selectedProjectIndex == null && !isCreatingProject) {
+		content = <NoProject createNewProject={createNewProject} />;
+	} else if (isCreatingProject) {
+		content = (
+			<CreateProject
+				saveProject={saveProject}
+				cancel={resetProjectSelection}
+			/>
+		);
+	} else {
+		content = (
+			<ProjectDetails
+				projectDetails={projects[selectedProjectIndex]}
+				updateProject={updateProject}
+				deleteProject={deleteProject}
+			/>
+		);
+	}
+
 	return (
 		<main className="h-screen my-8 flex gap-8">
 			<Sidebar
@@ -57,22 +78,7 @@ function App() {
 				projects={projects}
 				selectProject={selectProject}
 			/>
-			{selectedProjectIndex == null && !isCreatingProject && (
-				<NoProject createNewProject={createNewProject} />
-			)}
-			{isCreatingProject && (
-				<CreateProject
-					saveProject={saveProject}
-					cancel={resetProjectSelection}
-				/>
-			)}
-			{selectedProjectIndex !== null && (
-				<ProjectDetails
-					projectDetails={projects[selectedProjectIndex]}
-					updateProject={updateProject}
-					deleteProject={deleteProject}
-				/>
-			)}
+			{content}
 		</main>
 	);
 }
