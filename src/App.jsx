@@ -8,17 +8,33 @@ function App() {
 	const [selectedProject, setSelectedProject] = useState(null);
 	const [projects, setProjects] = useState(null);
 
-	function createProject(newProject) {
+	function saveProject(newProject) {
 		setProjects((prevProjects) => {
 			return [...prevProjects, newProject];
 		});
 	}
 
+	function createNewProject() {
+		setIsCreatingProject(true);
+	}
+
+	function resetProjectSelection() {
+		setIsCreatingProject(false);
+		setSelectedProject(null);
+	}
+
 	return (
 		<main className="h-screen my-8 flex gap-8">
-			<Sidebar addProject={setIsCreatingProject} />
-			{!selectedProject && <NoProject />}
-			{creatingProject && <CreateProject />}
+			<Sidebar createNewProject={createNewProject} />
+			{!selectedProject && !isCreatingProject && (
+				<NoProject createNewProjectt={createNewProject} />
+			)}
+			{isCreatingProject && (
+				<CreateProject
+					saveProject={saveProject}
+					cancel={resetProjectSelection}
+				/>
+			)}
 		</main>
 	);
 }
