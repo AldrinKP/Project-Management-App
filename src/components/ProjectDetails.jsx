@@ -9,6 +9,7 @@ export default function ProjectDetails({ projectDetails, updateProject }) {
 			tasks: [...projectDetails.tasks, task.current.value],
 		};
 		updateProject(updatedProject);
+		task.current.value = '';
 	}
 
 	function handleRemoveTask(taskIndex) {
