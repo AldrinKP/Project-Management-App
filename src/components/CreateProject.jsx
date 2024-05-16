@@ -27,18 +27,9 @@ export default function CreateProject({ saveProject, cancel }) {
 				</li>
 			</menu>
 			<div>
-				<p>
-					<label>TITLE</label>
-					<Input type="text" ref={title} />
-				</p>
-				<p>
-					<label>DESCRIPTION</label>
-					<Input type="text" ref={description} />
-				</p>
-				<p>
-					<label>Due Date</label>
-					<Input type="date" ref={dueDate} />
-				</p>
+				<Input labelText="Title" ref={title} type="text" />
+				<Input textarea labelText="Description" ref={description} />
+				<Input labelText="Due Date" ref={dueDate} type="date" />
 			</div>
 		</div>
 	);
