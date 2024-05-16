@@ -11,6 +11,7 @@ export default function CreateProject({ saveProject, cancel }) {
 			title: title.current.value,
 			description: description.current.value,
 			dueDate: dueDate.current.value,
+			tasks: [],
 		};
 		saveProject(newProject);
 	}
