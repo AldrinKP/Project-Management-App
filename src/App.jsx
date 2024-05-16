@@ -6,7 +6,7 @@ import CreateProject from './components/CreateProject';
 function App() {
 	const [isCreatingProject, setIsCreatingProject] = useState(false);
 	const [selectedProject, setSelectedProject] = useState(null);
-	const [projects, setProjects] = useState(null);
+	const [projects, setProjects] = useState([]);
 
 	function saveProject(newProject) {
 		setProjects((prevProjects) => {
@@ -35,6 +35,7 @@ function App() {
 					cancel={resetProjectSelection}
 				/>
 			)}
+			{console.log(projects)}
 		</main>
 	);
 }
