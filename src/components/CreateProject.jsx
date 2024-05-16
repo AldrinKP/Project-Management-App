@@ -18,16 +18,28 @@ export default function CreateProject({ saveProject, cancel }) {
 
 	return (
 		<div className="flex-col">
-			<div className="flex">
-				<button onClick={cancel}>Cancel</button>
-				<button onClick={handleSave}>Save</button>
+			<menu>
+				<li>
+					<button onClick={cancel}>Cancel</button>
+				</li>
+				<li>
+					<button onClick={handleSave}>Save</button>
+				</li>
+			</menu>
+			<div>
+				<p>
+					<label>TITLE</label>
+					<Input type="text" ref={title} />
+				</p>
+				<p>
+					<label>DESCRIPTION</label>
+					<Input type="text" ref={description} />
+				</p>
+				<p>
+					<label>Due Date</label>
+					<Input type="date" ref={dueDate} />
+				</p>
 			</div>
-			<label>TITLE</label>
-			<Input type="text" ref={title} />
-			<label>DESCRIPTION</label>
-			<Input type="text" ref={description} />
-			<label>Due Date</label>
-			<Input type="date" ref={dueDate} />
 		</div>
 	);
 }

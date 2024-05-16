@@ -11,18 +11,18 @@ export default function Sidebar({ createNewProject, projects, selectProject }) {
 				>
 					+ Add Project
 				</button>
-				<ul>
-					{projects.map((project, index) => {
-						return (
-							<li key={index}>
-								<button onClick={() => selectProject(index)}>
-									{project.title}
-								</button>
-							</li>
-						);
-					})}
-				</ul>
 			</div>
+			<ul>
+				{projects.map((project, index) => {
+					return (
+						<li key={index}>
+							<button onClick={() => selectProject(index)}>
+								{project.title}
+							</button>
+						</li>
+					);
+				})}
+			</ul>
 		</aside>
 	);
 }
