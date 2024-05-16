@@ -9,7 +9,9 @@ export default function NoProject({ createNewProject }) {
 			/>
 			<h2>No Project Selected</h2>
 			<p>Select a project or get started with a new one</p>
-			<button onClick={createNewProject}>Create new project</button>
+			<p>
+				<button onClick={createNewProject}>Create new project</button>
+			</p>
 		</div>
 	);
 }
