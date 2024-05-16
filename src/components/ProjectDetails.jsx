@@ -1,12 +1,14 @@
-export default function ProjectDetails({}) {
+export default function ProjectDetails({ projectDetails }) {
+	console.log(projectDetails);
 	return (
 		<div>
 			<div>
-				<h2>Project Title</h2>
+				<h2>{projectDetails.title}</h2>
 				<button>Delete</button>
 			</div>
-			<p>Aug 3, 2023</p>
-			<p>Description</p>
+			{/*TODO: convert to format: Aug 23, 2024 */}
+			<p>{projectDetails.dueDate}</p>
+			<p>{projectDetails.description}</p>
 			<hr />
 			<p>Tasks</p>
 			<div>

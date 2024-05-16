@@ -45,7 +45,11 @@ function App() {
 					cancel={resetProjectSelection}
 				/>
 			)}
-			{selectedProjectIndex !== null && <ProjectDetails />}
+			{selectedProjectIndex !== null && (
+				<ProjectDetails
+					projectDetails={projects[selectedProjectIndex]}
+				/>
+			)}
 			{console.log(projects)}
 		</main>
 	);

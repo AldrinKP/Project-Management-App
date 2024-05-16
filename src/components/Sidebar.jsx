@@ -18,7 +18,7 @@ export default function Sidebar({ createNewProject, projects, selectProject }) {
 						return (
 							<li key={index}>
 								<button onClick={() => selectProject(index)}>
-									{project.Title}
+									{project.title}
 								</button>
 							</li>
 						);
