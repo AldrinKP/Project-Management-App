@@ -30,6 +30,19 @@ function App() {
 		setSelectedProjectIndex(projectIndex);
 	}
 
+	function updateProject(updatedProject) {
+		setProjects((prevProjects) => {
+			const newProjects = prevProjects.map((project, index) => {
+				if (selectedProjectIndex === index) {
+					return updatedProject;
+				} else {
+					return project;
+				}
+			});
+			return newProjects;
+		});
+	}
+
 	return (
 		<main className="h-screen my-8 flex gap-8">
 			<Sidebar
