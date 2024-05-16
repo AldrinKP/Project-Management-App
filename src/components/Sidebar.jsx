@@ -1,6 +1,6 @@
 import ProjectEntry from './ProjectEntry';
 
-export default function Sidebar({ createNewProject, projects }) {
+export default function Sidebar({ createNewProject, projects, selectProject }) {
 	return (
 		<aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
 			<h2 className="mb-8 font-bold uppercase md:text-xl text-stone-200">
@@ -17,7 +17,9 @@ export default function Sidebar({ createNewProject, projects }) {
 					{projects.map((project, index) => {
 						return (
 							<li key={index}>
-								<button>{project.Title}</button>
+								<button onClick={() => selectProject(index)}>
+									{project.Title}
+								</button>
 							</li>
 						);
 					})}

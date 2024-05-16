@@ -2,10 +2,11 @@ import { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import NoProject from './components/NoProject';
 import CreateProject from './components/CreateProject';
+import ProjectDetails from './components/ProjectDetails';
 
 function App() {
 	const [isCreatingProject, setIsCreatingProject] = useState(false);
-	const [selectedProject, setSelectedProject] = useState(null);
+	const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
 	const [projects, setProjects] = useState([]);
 
 	function saveProject(newProject) {
@@ -21,14 +22,22 @@ function App() {
 
 	function resetProjectSelection() {
 		setIsCreatingProject(false);
-		setSelectedProject(null);
+		setSelectedProjectIndex(null);
+	}
+
+	function selectProject(projectIndex) {
+		setSelectedProjectIndex(projectIndex);
 	}
 
 	return (
 		<main className="h-screen my-8 flex gap-8">
-			<Sidebar createNewProject={createNewProject} projects={projects} />
-			{!selectedProject && !isCreatingProject && (
-				<NoProject createNewProjectt={createNewProject} />
+			<Sidebar
+				createNewProject={createNewProject}
+				projects={projects}
+				selectProject={selectProject}
+			/>
+			{selectedProjectIndex == null && !isCreatingProject && (
+				<NoProject createNewProject={createNewProject} />
 			)}
 			{isCreatingProject && (
 				<CreateProject
@@ -36,6 +45,7 @@ function App() {
 					cancel={resetProjectSelection}
 				/>
 			)}
+			{selectedProjectIndex !== null && <ProjectDetails />}
 			{console.log(projects)}
 		</main>
 	);
