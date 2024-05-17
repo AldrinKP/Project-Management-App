@@ -12,11 +12,14 @@ export default function Sidebar({ createNewProject, projects, selectProject }) {
 					+ Add Project
 				</button>
 			</div>
-			<ul>
+			<ul className="mt-8">
 				{projects.map((project, index) => {
 					return (
 						<li key={index}>
-							<button onClick={() => selectProject(index)}>
+							<button
+								onClick={() => selectProject(index)}
+								className="w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 hover:text-stone-200"
+							>
 								{project.title}
 							</button>
 						</li>
