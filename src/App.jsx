@@ -77,6 +77,7 @@ function App() {
 				createNewProject={createNewProject}
 				projects={projects}
 				selectProject={selectProject}
+				selectedProject={selectedProjectIndex}
 			/>
 			{content}
 		</main>
