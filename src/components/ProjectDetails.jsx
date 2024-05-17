@@ -6,6 +6,14 @@ export default function ProjectDetails({
 	deleteProject,
 }) {
 	const task = useRef();
+	const formattedDate = new Date(projectDetails.dueDate).toLocaleDateString(
+		'en-us',
+		{
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric',
+		}
+	);
 
 	function handleAddTask() {
 		const updatedProject = {
@@ -25,15 +33,24 @@ export default function ProjectDetails({
 	}
 
 	return (
-		<div>
-			<div>
-				<h2>{projectDetails.title}</h2>
-				<button onClick={deleteProject}>Delete</button>
-			</div>
-			{/*TODO: convert to format: Aug 23, 2024 */}
-			<p>{projectDetails.dueDate}</p>
-			<p>{projectDetails.description}</p>
-			<hr />
+		<div className="w-[35rem] mt-16">
+			<header className="pb-4 mb-4 border-b-2 border-stone-300">
+				<div className="flex items-center justify-between">
+					<h1 className="text-3xl font-bold text-stone-600 mb-2">
+						{projectDetails.title}
+					</h1>
+					<button
+						onClick={deleteProject}
+						className="text-stone-600 hover:text-stone-950"
+					>
+						Delete
+					</button>
+				</div>
+				<p className="mb-4 text-stone-400">{formattedDate}</p>
+				<p className="text-stone-600 whitespace-pre-wrap">
+					{projectDetails.description}
+				</p>
+			</header>
 			<p>Tasks</p>
 			<div>
 				<input ref={task} />
