@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import Button from './Button';
 
 const ErrorModal = forwardRef(function ErrorModal({}, ref) {
 	return (
@@ -10,8 +11,8 @@ const ErrorModal = forwardRef(function ErrorModal({}, ref) {
 				Invalid Input
 			</h2>
 			<p className="text-stone-400 mb-4">Please enter valid values</p>
-			<form method="dialog">
-				<button>Close</button>
+			<form method="dialog" className="mt-4 text-right">
+				<Button>Close</Button>
 			</form>
 		</dialog>
 	);
