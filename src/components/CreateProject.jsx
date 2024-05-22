@@ -1,13 +1,16 @@
+import { useRef, useContext } from 'react';
+import { ProjectsContext } from '../store/projects-context';
+import ErrorModal from './ErrorModal';
 import Input from './Input';
 import Button from './Button';
-import { useRef } from 'react';
-import ErrorModal from './ErrorModal';
 
-export default function CreateProject({ saveProject, cancel }) {
+export default function CreateProject() {
 	const title = useRef();
 	const description = useRef();
 	const dueDate = useRef();
 	const invalidValuesDialog = useRef();
+
+	const { saveProject, resetProjectSelection } = useContext(ProjectsContext);
 
 	function handleSave() {
 		const newTitle = title.current.value;
@@ -34,7 +37,7 @@ export default function CreateProject({ saveProject, cancel }) {
 				<menu className="flex items-center justify-end gap-4 my-4">
 					<li>
 						<button
-							onClick={cancel}
+							onClick={resetProjectSelection}
 							className="text-stone-800 hover:text-stone-950"
 						>
 							Cancel
