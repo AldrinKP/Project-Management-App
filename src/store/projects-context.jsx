@@ -9,6 +9,7 @@ export const ProjectsContext = createContext({
 	resetProjectSelection: () => {},
 	selectProject: () => {},
 	deleteProject: () => {},
+	updateProject: () => {},
 });
 
 export default function ProjectsContextProvider({ children }) {
@@ -44,7 +45,7 @@ export default function ProjectsContextProvider({ children }) {
 		handleResetProjectSelection();
 	}
 
-	function updateProject(updatedProject) {
+	function handleUpdateProject(updatedProject) {
 		setProjects((prevProjects) => {
 			const newProjects = prevProjects.map((project, index) => {
 				if (selectedProjectIndex === index) {
@@ -66,6 +67,7 @@ export default function ProjectsContextProvider({ children }) {
 		resetProjectSelection: handleResetProjectSelection,
 		selectProject: handleSelectProject,
 		deleteProject: handleDeleteProject,
+		updateProject: handleUpdateProject,
 	};
 	return (
 		<ProjectsContext.Provider value={ctxValue}>
