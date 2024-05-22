@@ -1,5 +1,8 @@
 import { useContext } from 'react';
 import { ProjectsContext } from '../store/projects-context';
+import NoProject from './NoProject';
+import CreateProject from './CreateProject';
+import ProjectDetails from './ProjectDetails';
 
 export default function MainSection() {
 	const { selectedProjectIndex, isCreatingProject } =
