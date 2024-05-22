@@ -1,7 +1,11 @@
+import { useContext } from 'react';
+import { ProjectsContext } from '../store/projects-context';
 import noProjects from '../assets/no-projects.png';
 import Button from './Button';
 
-export default function NoProject({ createNewProject }) {
+export default function NoProject() {
+	const { createNewProject } = useContext(ProjectsContext);
+
 	return (
 		<div className="mt-24 text-center w-2/3">
 			<img
