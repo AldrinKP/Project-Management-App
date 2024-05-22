@@ -1,7 +1,9 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
 export const ProjectsContext = createContext({
 	projects: [],
+	isCreatingProject: false,
+	selectedProjectIndex: null,
 	createNewProject: () => {},
 	saveProject: () => {},
 	resetProjectSelection: () => {},
@@ -56,7 +58,9 @@ export default function ProjectsContextProvider({ children }) {
 	}
 
 	const ctxValue = {
-		projects: projects,
+		projects,
+		isCreatingProject,
+		selectedProjectIndex,
 		createNewProject: handleCreateNewProject,
 		saveProject: handleSaveProject,
 		resetProjectSelection: handleResetProjectSelection,
