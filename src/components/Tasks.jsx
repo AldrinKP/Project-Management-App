@@ -1,11 +1,17 @@
 import { useRef } from 'react';
-export default function Tasks({ updateProject, projectDetails }) {
+import { useContext } from 'react';
+import { ProjectsContext } from '../store/projects-context';
+
+export default function Tasks() {
 	const task = useRef();
+	const { updateProject, selectedProjectIndex, projects } =
+		useContext(ProjectsContext);
+	const selectedProject = projects[selectedProjectIndex];
 
 	function handleAddTask() {
 		const updatedProject = {
-			...projectDetails,
-			tasks: [...projectDetails.tasks, task.current.value],
+			...selectedProject,
+			tasks: [...selectedProject.tasks, task.current.value],
 		};
 		updateProject(updatedProject);
 		task.current.value = '';
@@ -13,8 +19,8 @@ export default function Tasks({ updateProject, projectDetails }) {
 
 	function handleRemoveTask(taskIndex) {
 		const updatedProject = {
-			...projectDetails,
-			tasks: projectDetails.tasks.toSpliced(taskIndex, 1),
+			...selectedProject,
+			tasks: selectedProject.tasks.toSpliced(taskIndex, 1),
 		};
 		updateProject(updatedProject);
 	}
@@ -34,13 +40,13 @@ export default function Tasks({ updateProject, projectDetails }) {
 					Add Task
 				</button>
 			</div>
-			{projectDetails.tasks.length === 0 ? (
+			{selectedProject.tasks.length === 0 ? (
 				<p className="text-stone-800 my-4">
 					This project does not have any tasks yet
 				</p>
 			) : (
 				<ul>
-					{projectDetails.tasks.map((task, index) => {
+					{selectedProject.tasks.map((task, index) => {
 						return (
 							<li
 								className="flex justify-between my-4"
