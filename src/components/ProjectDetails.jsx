@@ -6,6 +6,7 @@ export default function ProjectDetails() {
 	const { deleteProject, selectedProjectIndex, projects } =
 		useContext(ProjectsContext);
 	const selectedProject = projects[selectedProjectIndex];
+
 	const formattedDate = new Date(selectedProject.dueDate).toLocaleDateString(
 		'en-us',
 		{
