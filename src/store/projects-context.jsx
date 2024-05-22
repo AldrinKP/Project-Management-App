@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useReducer } from 'react';
 
 export const ProjectsContext = createContext({
 	projects: [],
@@ -12,10 +12,34 @@ export const ProjectsContext = createContext({
 	updateProject: () => {},
 });
 
+function projectsReducer(state, action) {
+	if (action.type === 'SAVE_PROJECT') {
+		return { projects: [...state.projects, action.payload] };
+	}
+	if (action.type === 'DELETE_PROJECT') {
+		return {
+			projects: state.projects.toSpliced(action.payload, 1),
+		};
+	}
+	if (action.type === 'UPDATE_PROJECT') {
+		const newProjects = state.projects.map((project, index) => {
+			if (action.payload.selectedProjectIndex === index) {
+				return action.payload.updatedProject;
+			} else {
+				return project;
+			}
+		});
+		return { projects: newProjects };
+	}
+	return state;
+}
+
 export default function ProjectsContextProvider({ children }) {
 	const [isCreatingProject, setIsCreatingProject] = useState(false);
 	const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
-	const [projects, setProjects] = useState([]);
+	const [projectsState, projectsDispatch] = useReducer(projectsReducer, {
+		projects: [],
+	});
 
 	function handleCreateNewProject() {
 		setSelectedProjectIndex(null);
@@ -23,8 +47,9 @@ export default function ProjectsContextProvider({ children }) {
 	}
 
 	function handleSaveProject(newProject) {
-		setProjects((prevProjects) => {
-			return [...prevProjects, newProject];
+		projectsDispatch({
+			type: 'SAVE_PROJECT',
+			payload: newProject,
 		});
 		handleResetProjectSelection();
 	}
@@ -39,27 +64,22 @@ export default function ProjectsContextProvider({ children }) {
 	}
 
 	function handleDeleteProject() {
-		setProjects((prevProjects) => {
-			return prevProjects.toSpliced(selectedProjectIndex, 1);
+		projectsDispatch({
+			type: 'DELETE_PROJECT',
+			payload: selectedProjectIndex,
 		});
 		handleResetProjectSelection();
 	}
 
 	function handleUpdateProject(updatedProject) {
-		setProjects((prevProjects) => {
-			const newProjects = prevProjects.map((project, index) => {
-				if (selectedProjectIndex === index) {
-					return updatedProject;
-				} else {
-					return project;
-				}
-			});
-			return newProjects;
+		projectsDispatch({
+			type: 'UPDATE_PROJECT',
+			payload: { selectedProjectIndex, updatedProject },
 		});
 	}
 
 	const ctxValue = {
-		projects,
+		projects: projectsState.projects,
 		isCreatingProject,
 		selectedProjectIndex,
 		createNewProject: handleCreateNewProject,
