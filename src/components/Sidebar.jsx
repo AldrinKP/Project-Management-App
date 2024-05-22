@@ -1,9 +1,9 @@
-export default function Sidebar({
-	createNewProject,
-	projects,
-	selectProject,
-	selectedProject,
-}) {
+import { useContext } from 'react';
+import { ProjectsContext } from '../store/projects-context';
+
+export default function Sidebar() {
+	const { createNewProject, selectProject, selectedProjectIndex, projects } =
+		useContext(ProjectsContext);
 	return (
 		<aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
 			<h2 className="mb-8 font-bold uppercase md:text-xl text-stone-200">
@@ -21,7 +21,7 @@ export default function Sidebar({
 				{projects.map((project, index) => {
 					let classes =
 						'w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200';
-					if (index === selectedProject) {
+					if (index === selectedProjectIndex) {
 						classes += ' bg-stone-800 text-stone-200';
 					} else {
 						classes += ' text-stone-400';
