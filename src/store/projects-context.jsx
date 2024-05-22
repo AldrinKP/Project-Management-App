@@ -41,6 +41,20 @@ export default function ProjectsContextProvider({ children }) {
 		});
 		handleResetProjectSelection();
 	}
+
+	function updateProject(updatedProject) {
+		setProjects((prevProjects) => {
+			const newProjects = prevProjects.map((project, index) => {
+				if (selectedProjectIndex === index) {
+					return updatedProject;
+				} else {
+					return project;
+				}
+			});
+			return newProjects;
+		});
+	}
+
 	const ctxValue = {
 		projects: projects,
 		createNewProject: handleCreateNewProject,
