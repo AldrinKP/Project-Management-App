@@ -1,8 +1,9 @@
 import { useRef, useContext, useState } from 'react';
 import { ProjectsContext } from '../store/projects-context';
-import ErrorModal from './ErrorModal';
+import Modal from './Modal';
 import Input from './Input';
 import Button from './Button';
+import InvalidValue from './InvalidValue';
 
 export default function CreateProject() {
 	const title = useRef();
@@ -29,13 +30,17 @@ export default function CreateProject() {
 			saveProject(newProject);
 		}
 	}
+
 	function handleInvalidConfirm() {
+		console.log('Button clicked!');
 		setIsOpen(false);
 	}
 
 	return (
 		<>
-			<ErrorModal open={isOpen} buttonConfirm={handleInvalidConfirm} />
+			<Modal open={isOpen}>
+				<InvalidValue onConfirm={handleInvalidConfirm} />
+			</Modal>
 			<div className="w-[35rem] mt-16 flex-col">
 				<menu className="flex items-center justify-end gap-4 my-4">
 					<li>
