@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react';
+import { useRef, useContext, useState } from 'react';
 import { ProjectsContext } from '../store/projects-context';
 import ErrorModal from './ErrorModal';
 import Input from './Input';
@@ -8,9 +8,9 @@ export default function CreateProject() {
 	const title = useRef();
 	const description = useRef();
 	const dueDate = useRef();
-	const invalidValuesDialog = useRef();
 
 	const { saveProject, resetProjectSelection } = useContext(ProjectsContext);
+	const [isOpen, setIsOpen] = useState(false);
 
 	function handleSave() {
 		const newTitle = title.current.value;
@@ -18,7 +18,7 @@ export default function CreateProject() {
 		const newDueDate = dueDate.current.value;
 
 		if (newTitle === '' || newDescription === '' || newDueDate === '') {
-			invalidValuesDialog.current.showModal();
+			setIsOpen(true);
 		} else {
 			const newProject = {
 				title: newTitle,
@@ -29,10 +29,13 @@ export default function CreateProject() {
 			saveProject(newProject);
 		}
 	}
+	function handleInvalidConfirm() {
+		setIsOpen(false);
+	}
 
 	return (
 		<>
-			<ErrorModal ref={invalidValuesDialog} />
+			<ErrorModal open={isOpen} buttonConfirm={handleInvalidConfirm} />
 			<div className="w-[35rem] mt-16 flex-col">
 				<menu className="flex items-center justify-end gap-4 my-4">
 					<li>
