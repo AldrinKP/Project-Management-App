@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useContext } from 'react';
 import { ProjectsContext } from '../store/projects-context';
 import Modal from './Modal.jsx';
@@ -33,14 +33,17 @@ export default function Tasks() {
 		});
 	}
 
-	function handleRemoveTask() {
-		const updatedProject = {
-			...selectedProject,
-			tasks: selectedProject.tasks.toSpliced(deleteTask.taskId, 1),
-		};
-		updateProject(updatedProject);
-		setDeleteTask({ ...DELETE_TASK_DEFAULT });
-	}
+	const handleRemoveTask = useCallback(
+		function handleRemoveTask() {
+			const updatedProject = {
+				...selectedProject,
+				tasks: selectedProject.tasks.toSpliced(deleteTask.taskId, 1),
+			};
+			updateProject(updatedProject);
+			setDeleteTask({ ...DELETE_TASK_DEFAULT });
+		},
+		[deleteTask]
+	);
 
 	function handleCancelRemoveTask() {
 		setDeleteTask({ ...DELETE_TASK_DEFAULT });

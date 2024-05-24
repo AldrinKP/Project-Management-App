@@ -1,6 +1,18 @@
+import { useEffect } from 'react';
 import Button from './Button';
 
+const TIMER = 3000;
+
 export default function DeleteTaskConfirmation({ onConfirm, onCancel }) {
+	useEffect(() => {
+		const autoConfirm = setTimeout(() => {
+			onConfirm();
+		}, TIMER);
+
+		return () => {
+			clearTimeout(autoConfirm);
+		};
+	}, [onConfirm]);
 	return (
 		<div>
 			<p className="text-stone-400 mb-4 font-bold text-lg">
